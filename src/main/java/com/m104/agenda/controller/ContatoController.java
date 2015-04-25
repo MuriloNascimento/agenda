@@ -44,11 +44,18 @@ public class ContatoController {
 	
 	@RequestMapping(value="/cadastrar",method=RequestMethod.POST)
 	public String cadastrar(@Valid Contato contato, BindingResult result, Model model){
-		if(result.hasErrors()) {
-			model.addAttribute("msgm","não foi possivel cadastrar");
+		if(result.hasFieldErrors("nome")) {
+			model.addAttribute("msgm",result.getFieldError().getDefaultMessage());
+			model.addAttribute("alerta","danger");
 			return "forward:cadastro";
-		}
+		} 
+		if(result.hasFieldErrors("telefone")) {
+			model.addAttribute("msgm",result.getFieldError().getDefaultMessage());
+			model.addAttribute("alerta","danger");
+			return "forward:cadastro";
+		} 
 		model.addAttribute("msgm","cadastrado com sucesso");
+		model.addAttribute("alerta","success");
 		this.repo.salvar(contato);
 		return "forward:cadastro";
 	}

@@ -38,7 +38,7 @@
 							<div class="form-group">
 							    <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
 							    <div class="col-sm-10">
-							    	<input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="00-000000000" value="${requestScope.contato.telefone}">
+							    	<input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="00-000000000" value="${requestScope.contato.telefone}" pattern="[1-9]{2}\-[2-9][\d]{7,8}" oninvalid="setCustomValidity('Formato invalido de telefone')" onchange="try{setCustomValidity('')}catch(e){}">
 							    </div>
 							</div>
   							<div class="form-group">
@@ -51,7 +51,7 @@
 						    <c:if test="${not empty msgm}">
 							    <div class="form-group">
 							      <div class="col-lg-10 col-lg-offset-2">
-							      	    <div class="alert alert-warning" role="alert">
+							      	    <div class="alert alert-${requestScope.alerta}" role="alert">
 										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 										  ${msgm}
 										</div>

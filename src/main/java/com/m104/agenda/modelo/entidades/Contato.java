@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,6 +18,7 @@ public class Contato {
 	private String nome;
 	
 	@NotEmpty(message="O telefone deve ser preenchido")
+	@Size(max=12, message="O telefone deve conter no máximo 12 caractéres")
 	private String telefone;
 
 	public int getId() {
