@@ -34,7 +34,7 @@ public class ContatoDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Contato> buscartodos(){
-		Query consulta = em.createQuery("SELECT c FROM Contato c");
+		Query consulta = em.createNativeQuery("{call buscar_todos}",Contato.class);
 		return consulta.getResultList();
 	}
 	
